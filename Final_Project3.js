@@ -6,7 +6,8 @@ let table = document.getElementById('list');
 let CustomerNameElement = document.getElementById('customer-name');
 let HQElement = document.getElementById('HQ-location');
 let emailElement = document.getElementById('Email');
-let IDElement = document.getElementById('ID')
+let IDElement = document.getElementById('ID');
+let PhoneNumberElement = document.getElementById('phone-number');
 
 renderExisting(ExistingCustomersList)
 
@@ -18,7 +19,8 @@ document.getElementById('add').addEventListener('click', () => {
         customerID : IDElement.value,
         customerName: CustomerNameElement.value,
         customerHQLocation: HQElement.value,
-        customerEmail: emailElement.value
+        customerEmail: emailElement.value,
+        customerPhoneNumber: PhoneNumberElement.value,
     }
 
 
@@ -26,7 +28,7 @@ document.getElementById('add').addEventListener('click', () => {
     document.getElementById('customer-name').value = '';
     document.getElementById('HQ-location').value = '';
     document.getElementById('Email').value = ''; 
-    
+    document.getElementById('phone-number').value = '';
 
     ExistingCustomersList.push(customerInputInfo);
     localStorage.setItem("ExistingCustomersList", JSON.stringify(ExistingCustomersList))
@@ -46,7 +48,9 @@ function renderExisting(ExistingCustomersList){
     row.insertCell(2).innerHTML = ExistingCustomersList[`${id}`].customerName;
     row.insertCell(3).innerHTML = ExistingCustomersList[`${id}`].customerHQLocation;
     row.insertCell(4).innerHTML = ExistingCustomersList[`${id}`].customerEmail;
-    let actions = row.insertCell(5);
+    row.insertCell(5).innerHTML = ExistingCustomersList[`${id}`].customerPhoneNumber;
+    
+    let actions = row.insertCell(6);
     actions.appendChild(createDeleteButton(id++));
         }
 }
